@@ -77,4 +77,4 @@ for each_line in data.splitlines():
 		sn = each_line.split()[-4]
 		mn = each_line.split()[-6]
 
-print "This is a " + mn + " with Serial number: " + sn
+print "This is a " + mn + " running software " + sn
