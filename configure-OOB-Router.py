@@ -23,7 +23,7 @@ if "#" in PRIV:
 tn.write("\r\n")
 tn.write("\r\n")
 hostname = tn.read_until(">", timeout=1).split()[-1]
-
+global sn
 
 def ShowVer():
 	time.sleep(1)
@@ -48,7 +48,6 @@ def ShowVer():
 	print "Info collected"
 	time.sleep(2)
 	p = re.compile(data)
-	global sn
 	time.sleep(1)
 	for each_line in data.splitlines():
 	   if "Processor" in each_line:
