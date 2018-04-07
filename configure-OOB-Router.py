@@ -12,7 +12,7 @@ PORT = raw_input("Enter the telnet port number you are using: ")
 #password = getpass.getpass()
 tn = telnetlib.Telnet(HOST, PORT, timeout = 1)
 #tn.set_debuglevel(8)
-print "Connecting to localhost port " PORT
+print "Connecting to localhost port " + PORT
 tn.write("\r\n")
 
 
@@ -24,7 +24,6 @@ if "#" in PRIV:
 tn.write("\r\n")
 tn.write("\r\n")
 hostname = tn.read_until(">", timeout=1).split()[-1]
-global sn
 
 def ShowVer():
 	time.sleep(1)
@@ -52,8 +51,9 @@ def ShowVer():
 	time.sleep(1)
 	for each_line in data.splitlines():
 	   if "Processor" in each_line:
-	      sn = each_line.split()[-1]
-	      print "The serial number of this device is:" + sn
+		  global sn
+		  sn = each_line.split()[-1]
+		  print "The serial number of this device is:" + sn
 	datafile = sn
 	time.sleep(2)
 	try:
