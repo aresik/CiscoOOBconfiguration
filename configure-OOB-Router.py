@@ -12,7 +12,7 @@ PORT = raw_input("Enter the telnet port number you are using: ")
 #password = getpass.getpass()
 tn = telnetlib.Telnet(HOST, PORT, timeout = 1)
 #tn.set_debuglevel(8)
-print "Connecting to localhost port " + PORT
+print "Connecting to" + HOST + "on port " + PORT
 tn.write("\r\n")
 
 
