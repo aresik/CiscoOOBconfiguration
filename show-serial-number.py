@@ -59,7 +59,7 @@ def ShowVer():
 	#time.sleep(1)
 	#tn.set_debuglevel(10)
 	#tn.close()
-	print data
+	#####print data
 
 if "#" in hostname:
 	print "Someone Forgot to Logout!"
