@@ -65,7 +65,7 @@ if "#" in hostname:
 	tn.write("exit\n")
 	ShowVer()
 else:
-	print "All good"
+	print "All good. Connected!"
 	ShowVer()
 
 p = re.compile('data')
