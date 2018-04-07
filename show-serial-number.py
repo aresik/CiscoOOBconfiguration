@@ -7,12 +7,12 @@ import re
 import os
 
 HOST = raw_input("Enter terminal server (RPi) IP Address: ")
-PORT = raw_input("Enter the telnet port number you are using: ")
+#PORT = raw_input("Enter the telnet port number you are using: ")
 #user = raw_input("Enter your telnet username: ")
 #password = getpass.getpass()
-tn = telnetlib.Telnet(HOST, PORT, timeout = 1)
+tn = telnetlib.Telnet(HOST, 4001, timeout = 1)
 #tn.set_debuglevel(8)
-print "Connecting to " + HOST + " on port " + PORT
+print "Connecting to " + HOST + " on port 4001"
 tn.write("\r\n")
 
 time.sleep(2)
@@ -43,7 +43,7 @@ def ShowVer():
 	tn.read_until("Router#")
 	time.sleep(4)
 	print "show version"
-	print tn.read_eager()
+	#print tn.read_eager()
 	global data
 	data = tn.read_until("Router#")
 	print "Info collected"
@@ -56,9 +56,9 @@ def ShowVer():
 	#tn.write("quit\n")
 	#print "Quiting telnet>"
 	#time.sleep(1)
-	print data
 	#tn.set_debuglevel(10)
 	#tn.close()
+	####print data
 
 if "#" in hostname:
 	print "Someone Forgot to Logout!"
@@ -71,10 +71,10 @@ else:
 p = re.compile('data')
 
 for each_line in data.splitlines():
-	if "Linux Software" in each_line:
+	if "*0" in each_line:
 		global sn
 		global mn
-		sn = each_line.split()[-4]
-		mn = each_line.split()[-6]
+		sn = each_line.split()[-1]
+		mn = each_line.split()[-2]
 
-print "This is a " + mn + " running software " + sn
+print "This is a " + mn + " with Serial Number: " + sn
