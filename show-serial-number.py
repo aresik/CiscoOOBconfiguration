@@ -7,12 +7,12 @@ import re
 import os
 
 HOST = raw_input("Enter terminal server (RPi) IP Address: ")
-#PORT = raw_input("Enter the telnet port number you are using: ")
+PORT = raw_input("Enter the telnet port number you are using: ")
 #user = raw_input("Enter your telnet username: ")
 #password = getpass.getpass()
-tn = telnetlib.Telnet(HOST, 4001, timeout = 1)
+tn = telnetlib.Telnet(HOST, PORT, timeout = 1)
 #tn.set_debuglevel(8)
-print "Connecting to " + HOST + " on port 4001"
+print "Connecting to " + HOST + " on port " + PORT
 tn.write("\r\n")
 
 time.sleep(2)
