@@ -30,21 +30,21 @@ def ShowVer():
 	print "The Hostname of device is: " + hostname
 	tn.write("en\r\n")
 	time.sleep(3)
-	tn.read_until(Router#)
+	tn.read_until("Router#")
 	print "Console Access gained"
 	time.sleep(4)
 	tn.write("terminal leng 0\n")
 	print "Terminal Lenght 0"
-	tn.read_until(Router#)
+	tn.read_until("Router#")
 	time.sleep(1)
 	tn.write("show version\n")
 	time.sleep(5)
 	print "Show Version"
 	#print tn.read_eager()
-	tn.read_until(Router#)
+	tn.read_until("Router#")
 	time.sleep(1)
 	global data
-	data = tn.read_until(Router#)
+	data = tn.read_until("Router#")
 	print "Info collected"
 	time.sleep(2)
 	p = re.compile(data)
