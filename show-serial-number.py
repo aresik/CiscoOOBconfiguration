@@ -22,7 +22,7 @@ if "#" in PRIV:
 	tn.write("exit\n")
 tn.write("\r\n")
 tn.write("\r\n")
-hostname = tn.read_until(">", timeout=1).split()[-1]
+hostname = tn.read_until(">", timeout=1).split()[-1][:-1]
 
 def ShowVer():
 	time.sleep(2)
@@ -33,20 +33,21 @@ def ShowVer():
 	time.sleep(2)
 	tn.write("en\r\n")
 	time.sleep(2)
-	tn.read_until("Router#")
+	tn.read_until("#")
 	print "Console Access gained"
 	time.sleep(4)
 	tn.write("terminal leng 0\n")
 	print "Terminal Lenght 0"
 	tn.write("show version\n")
 	tn.read_eager()
-	tn.read_until("Router#")
+	tn.read_until(hostname + "#")
 	time.sleep(4)
 	print "show version"
 	#print tn.read_eager()
 	global data
-	data = tn.read_until("Router#")
+	data = tn.read_until(hostname + "#")
 	print "Info collected"
+	print hostname + "#"
 	time.sleep(2)
 	tn.write("exit\n")
 	print "Exiting...."
@@ -58,7 +59,7 @@ def ShowVer():
 	#time.sleep(1)
 	#tn.set_debuglevel(10)
 	#tn.close()
-	####print data
+	print data
 
 if "#" in hostname:
 	print "Someone Forgot to Logout!"
