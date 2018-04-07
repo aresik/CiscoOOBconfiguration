@@ -1,7 +1,5 @@
-config t
 logging 1.2.3.4
 hostname Cisco_891F
 interface tun0
 router eigrp 1
 network 10.0.0.0
-end
