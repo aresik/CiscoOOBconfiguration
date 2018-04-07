@@ -11,37 +11,40 @@ HOST = raw_input("Enter RPi internal IP Address ")
 #password = getpass.getpass()
 tn = telnetlib.Telnet(HOST, "4001", timeout = 1)
 #tn.set_debuglevel(8)
-tn.write("\r\n")
-tn.write("\r\n")
-time.sleep(2)
 print "Connecting to localhost port 4001"
-tn.read_eager()
-hostname = tn.read_eager().splitlines()[-1]
+tn.write("\r\n")
+
+
 time.sleep(2)
-#tn.read_until(">")
-#hostname = tn.read_until(">").split()[-1]
-global sn
+PRIV = tn.read_eager()
+if "#" in PRIV:
+	print "Someone Forgot to Logout, Again!"
+	tn.write("exit\n")
+tn.write("\r\n")
+tn.write("\r\n")
+hostname = tn.read_until(">", timeout=1).split()[-1]
+
 
 def ShowVer():
 	time.sleep(1)
 	print "The Hostname of device is: " + hostname
 	tn.write("en\r\n")
 	time.sleep(3)
-	tn.read_until(hostname + "#")
+	tn.read_until(hostname)
 	print "Console Access gained"
 	time.sleep(4)
 	tn.write("terminal leng 0\n")
 	print "Terminal Lenght 0"
-	tn.read_until(hostname + "#")
+	tn.read_until(hostname)
 	time.sleep(1)
 	tn.write("show version\n")
 	time.sleep(5)
 	print "Show Version"
 	#print tn.read_eager()
-	tn.read_until(hostname + "#")
+	tn.read_until(hostname)
 	time.sleep(1)
 	global data
-	data = tn.read_until(hostname + "#")
+	data = tn.read_until(hostname)
 	print "Info collected"
 	time.sleep(2)
 	p = re.compile(data)
@@ -58,7 +61,7 @@ def ShowVer():
 	      print ("File found, executing commands...")
 	      for each_line in f.read().splitlines():
 	         command = str(each_line)
-	         #tn.write("terminal length 0\n")
+	         tn.write("config t\n")
 	         tn.write(command + "\n")
 	         print "Applying command:" + command
 	         tn.read_eager()
@@ -68,6 +71,7 @@ def ShowVer():
 	         #print output
 	except IOError as e:
    	   print ("Error: %s not found." % datafile)
+	tn.write("end\n")
 	tn.write("exit\n")
 	print "Exiting..."
 	time.sleep(1)
