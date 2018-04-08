@@ -14,3 +14,6 @@ configure-OOB-Router.py
 In addition the the show-serial-number.py script, this script will look for a text file named after the Serial Number of the device (e.g. ABCDE12345) and will push the commands from the file to the Router.
 See example file ABCDE12345.
 
+A demo can be seen here:
+
+https://youtu.be/_qLU8UlwMV8
