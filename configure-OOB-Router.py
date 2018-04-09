@@ -50,7 +50,7 @@ def ShowVer():
 	p = re.compile(data)
 	time.sleep(1)
 	for each_line in data.splitlines():
-	   if "Processor" in each_line:
+	   if "*0" in each_line:
 		  global sn
 		  sn = each_line.split()[-1]
 		  print "The serial number of this device is:" + sn
